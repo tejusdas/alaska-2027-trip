@@ -1,0 +1,14 @@
+# Publish ONLY index.html to GitHub Pages.
+# Strategy: ignore everything, then explicitly un-ignore the files that are safe to publish.
+
+# Ignore everything by default
+/*
+
+# Allow the published page and the ignore rules themselves
+!index.html
+!.gitignore
+
+# Notes:
+# - alaska-2027-planning-journal.md and any other local notes stay untracked and are never pushed.
+# - CLAUDE.md is intentionally kept local (not published). Remove the "/*" rule above
+#   or add "!CLAUDE.md" if you ever want it committed.

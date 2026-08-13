@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alaska 2027 Cruise — Family Summary</title>
+<style>
+  :root {
+    color-scheme: light;
+    --navy: #0b3552;
+    --navy-deep: #082438;
+    --teal: #1f8a9c;
+    --teal-dark: #146b7a;
+    --sand: #f6f1e6;
+    --sand-card: #fffdf8;
+    --gold: #c98a2e;
+    --ink: #1e2a30;
+    --ink-soft: #5b6b70;
+    --ink-faint: #8a969a;
+    --line: #e4ddc9;
+    --good-bg: #e4f2ea; --good-ink: #1e6b3a; --good-line: #bfe0c2;
+    --warn-bg: #fcf1de; --warn-ink: #93641a; --warn-line: #edd9ad;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--sand); color: var(--ink);
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 16px 64px; }
+
+  /* Header / hero */
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: #fff; padding: 40px 16px 56px; position: relative; overflow: hidden;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+  .hero .eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    color: #bcdfe6; margin-bottom: 10px; font-weight: 600;
+  }
+  .hero h1 { font-size: clamp(22px, 5vw, 32px); margin: 0 0 8px; color: #fff; }
+  .hero .subtitle { color: #d6e8ec; font-size: 15px; margin: 0; max-width: 60ch; }
+  .hero .updated { font-size: 12px; color: #9fc4cc; margin-top: 14px; }
+  .wave { display: block; width: 100%; height: 44px; margin-bottom: -1px; }
+
+  h2.section-title {
+    font-size: 19px; margin: 40px 0 14px; color: var(--navy);
+    display: flex; align-items: center; gap: 8px;
+  }
+  h2.section-title svg { flex-shrink: 0; }
+  section { margin-top: 8px; }
+
+  .snapshot-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+    gap: 10px; margin-top: -30px; position: relative; z-index: 3;
+  }
+  .snapshot-item {
+    background: var(--sand-card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px 14px; box-shadow: 0 2px 6px rgba(11,53,82,0.06);
+  }
+  .snapshot-item .label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); margin-bottom: 4px; }
+  .snapshot-item .value { font-size: 13.5px; font-weight: 700; color: var(--navy); }
+
+  .table-wrap {
+    border: 1px solid var(--line); border-radius: 12px; overflow-x: auto;
+    background: var(--sand-card); -webkit-overflow-scrolling: touch;
+    box-shadow: 0 2px 6px rgba(11,53,82,0.05);
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 480px; }
+  th, td { text-align: left; padding: 11px 13px; border-bottom: 1px solid #efe9d9; vertical-align: top; white-space: normal; }
+  th { background: var(--navy); color: #eaf3f5; font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: .03em; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #fbf8f0; }
+  .scroll-hint { font-size: 11px; color: var(--ink-faint); margin: 6px 2px 0; display: none; }
+
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 10.5px; font-weight: 700; margin-left: 6px; white-space: nowrap; }
+  .badge-lead { background: var(--good-bg); color: var(--good-ink); }
+  .badge-mid { background: var(--warn-bg); color: var(--warn-ink); }
+  .badge-high { background: #fbe2e0; color: #a4302e; }
+
+  .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .pill { background: rgba(255,255,255,0.65); border: 1px solid var(--line); border-radius: 20px; padding: 4px 11px; font-size: 12px; color: var(--navy); font-weight: 600; }
+
+  .callout { border-radius: 12px; padding: 18px 18px; margin: 14px 0; border: 1px solid; }
+  .callout.recommend { background: var(--good-bg); border-color: var(--good-line); }
+  .callout.decision { background: var(--warn-bg); border-color: var(--warn-line); }
+  .callout .tag { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; font-weight: 800; }
+  .callout.recommend .tag { color: var(--good-ink); }
+  .callout.decision .tag { color: var(--warn-ink); }
+  .callout h3 { margin: 4px 0 8px; font-size: 17px; }
+  .callout.recommend h3 { color: var(--good-ink); }
+
+  ul.clean { margin: 8px 0 0; padding-left: 20px; }
+  ul.clean li { margin-bottom: 8px; }
+
+  .small { font-size: 12.5px; color: var(--ink-soft); }
+  .foot-note { font-size: 12px; color: var(--ink-faint); margin-top: 44px; border-top: 1px solid var(--line); padding-top: 16px; }
+  .total-row td { font-weight: 800; background: #f1ead6 !important; color: var(--navy); }
+
+  /* Mobile tweaks */
+  @media (max-width: 600px) {
+    .hero { padding: 30px 14px 46px; }
+    .wrap { padding: 0 12px 48px; }
+    .snapshot-grid { grid-template-columns: repeat(2, 1fr); margin-top: -26px; }
+    h2.section-title { font-size: 17px; margin-top: 32px; }
+    table { font-size: 12.5px; min-width: 560px; }
+    th, td { padding: 9px 10px; }
+    .scroll-hint { display: block; }
+    .callout { padding: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#bcdfe6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21c1.5-1 3.5-1 5 0s3.5 1 5 0 3.5-1 5 0 3.5 1 5 0"/><path d="M4 18l1-7 2-1V6a1 1 0 0 1 1-1h2V3h4v2h2a1 1 0 0 1 1 1v4l2 1 1 7"/></svg>
+      Voyage Planning
+    </div>
+    <h1>Alaska Cruise 2027 — Family Summary</h1>
+    <p class="subtitle">Planning summary for 3 families (10 travelers) · Mid-July – early Aug 2027 · Prepared for group review</p>
+    <div class="updated">Last updated: <span id="updated-date"></span></div>
+  </div>
+  <svg class="wave" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,60 L0,60 Z" fill="#f6f1e6"></path></svg>
+</div>
+
+<div class="wrap">
+
+  <section aria-label="Trip snapshot">
+    <div class="snapshot-grid">
+      <div class="snapshot-item"><div class="label">Travel window</div><div class="value">Mid-Jul – early Aug 2027</div></div>
+      <div class="snapshot-item"><div class="label">Travelers</div><div class="value">10 people, 3 families</div></div>
+      <div class="snapshot-item"><div class="label">Cabins</div><div class="value">3 balconies</div></div>
+      <div class="snapshot-item"><div class="label">Must-have</div><div class="value">Glacier Bay Nat'l Park</div></div>
+      <div class="snapshot-item"><div class="label">Trip type</div><div class="value">Cruise only, 7 nights</div></div>
+      <div class="snapshot-item"><div class="label">Priorities</div><div class="value">Value · Fun for all ages · Glacier views</div></div>
+    </div>
+  </section>
+
+  <section aria-label="The families">
+    <h2 class="section-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      The Families
+    </h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Family</th><th>Travelers</th><th>Home airport</th></tr>
+        <tr><td><strong>Tejus's family</strong></td><td>Tejus, Tushara, Dhruv (9)</td><td>Dallas (DFW)</td></tr>
+        <tr><td><strong>Nitin's family</strong></td><td>Nitin, Archana, Anvay (13)</td><td>Dallas (DFW)</td></tr>
+        <tr><td><strong>Rakesh's family</strong></td><td>Rakesh, Aanchal, Kyra (13), Tia (6)</td><td>Brampton, ON (YYZ)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section aria-label="Shortlisted sailings">
+    <h2 class="section-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l1-7 2-1V6a1 1 0 0 1 1-1h2V3h4v2h2a1 1 0 0 1 1 1v4l2 1 1 7"/><path d="M2 21c1.5-1 3.5-1 5 0s3.5 1 5 0 3.5-1 5 0 3.5 1 5 0"/></svg>
+      Shortlisted Sailings
+    </h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Ship</th><th>Route</th><th>Itinerary highlights</th><th>Balcony fare (pp, dbl occ)</th></tr>
+        <tr>
+          <td><strong>Royal Princess</strong><br><span class="badge badge-lead">Value leader</span></td>
+          <td>7 nights, RT Seattle<br><span class="small">Sat: Jul 17 / 24 / 31, Aug 7</span></td>
+          <td>Juneau → Skagway → Glacier Bay → Ketchikan (downtown) → Victoria</td>
+          <td>$2,067</td>
+        </tr>
+        <tr>
+          <td><strong>HAL Koningsdam</strong><br><span class="badge badge-mid">Best itinerary</span></td>
+          <td>7 nights, RT Vancouver<br><span class="small">Sat: Jul 17 / 24</span></td>
+          <td>Tracy Arm → Juneau → Skagway → Glacier Bay → Ketchikan — <em>no Victoria filler</em></td>
+          <td>$1,992–2,154</td>
+        </tr>
+        <tr>
+          <td><strong>Norwegian Encore</strong><br><span class="badge badge-high">Most expensive</span></td>
+          <td>7 nights, RT Seattle<br><span class="small">Sun: Jul 11 / 18 / 25, Aug 1</span></td>
+          <td>Juneau → Skagway → Glacier Bay → Ketchikan (Ward Cove, ~7mi out) → Victoria</td>
+          <td>$2,879</td>
+        </tr>
+      </table>
+    </div>
+    <p class="scroll-hint">↔ Swipe to see all columns</p>
+    <p class="small" style="margin-top:10px;">All three sailings are confirmed to include Glacier Bay National Park on the specific dates checked. Fares are per person, double occupancy, cruise-only, pulled directly from cruise-line-fed booking pages — not final quotes.</p>
+  </section>
+
+  <section aria-label="Priority scorecard">
+    <h2 class="section-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      How Each Option Scores on What Matters
+    </h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Ship</th><th>Value for money</th><th>Fun — kids &amp; adults</th><th>Glacier views</th></tr>
+        <tr>
+          <td><strong>Royal Princess</strong></td>
+          <td><span class="badge badge-lead">Best</span></td>
+          <td><span class="badge badge-mid">Good</span></td>
+          <td><span class="badge badge-mid">Good</span></td>
+        </tr>
+        <tr>
+          <td><strong>HAL Koningsdam</strong></td>
+          <td><span class="badge badge-mid">Good</span></td>
+          <td><span class="badge badge-high">Fair</span></td>
+          <td><span class="badge badge-lead">Best</span></td>
+        </tr>
+        <tr>
+          <td><strong>Norwegian Encore</strong></td>
+          <td><span class="badge badge-high">Fair</span></td>
+          <td><span class="badge badge-lead">Best</span></td>
+          <td><span class="badge badge-mid">Good</span></td>
+        </tr>
+      </table>
+    </div>
+    <p class="small" style="margin-top:10px;">No single ship wins on all three: Royal Princess leads on cost, HAL Koningsdam has the strongest glacier program (two glacier-viewing days vs. one on the others), and Norwegian Encore has the most onboard activity for a mixed 6–14 age group (go-karts, laser tag, ropes course) but at a real premium. Worth a group discussion on which trade-off matters most.</p>
+  </section>
+
+  <section aria-label="Cost per family">
+    <h2 class="section-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Cost Per Family
+    </h2>
+    <p class="small">Includes cruise fare + round-trip flights + one night's pre-cruise hotel at the departure port. Excludes gratuities, drinks/wifi packages, and shore excursions. Two scenarios shown: <strong>Promo</strong> assumes the 3rd/4th cabin guest sails free or near-free (common but not guaranteed); <strong>No-promo</strong> assumes they pay roughly half the standard fare.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>Family</th><th>HAL Koningsdam<br><span class="small">(Vancouver)</span></th><th>Royal Princess<br><span class="small">(Seattle)</span></th><th>Norwegian Encore<br><span class="small">(Seattle)</span></th></tr>
+        <tr><td>Tejus (3, DFW)<br><span class="small">USD</span></td><td>$5,666 / $6,553</td><td>$5,194 / $6,078</td><td>$6,818 / $8,108</td></tr>
+        <tr><td>Nitin (3, DFW)<br><span class="small">USD</span></td><td>$5,666 / $6,553</td><td>$5,194 / $6,078</td><td>$6,818 / $8,108</td></tr>
+        <tr><td>Rakesh (4, YYZ)<br><span class="small">CAD</span></td><td>C$8,338 / C$10,822</td><td>C$8,196 / C$10,669</td><td>C$10,469 / C$14,080</td></tr>
+        <tr class="total-row"><td>Group total<br><span class="small" style="color:var(--ink-soft);">(USD)</span></td><td>$17,288 / $20,836</td><td>$16,242 / $19,777</td><td>$21,114 / $26,273</td></tr>
+      </table>
+    </div>
+    <p class="scroll-hint">↔ Swipe to see all columns</p>
+    <p class="small" style="margin-top:10px;">Tejus's and Nitin's figures are in USD. Rakesh's figures are converted to CAD at approximately 1 USD = 1.40 CAD (mid-market rate, Aug 2026) for his family's own budgeting — actual cost depends on the rate and card fees at time of payment. The group total row is shown in USD (using Rakesh's underlying USD figures) since that's the currency the cruise fare and flights are priced in. Format throughout: Promo scenario / No-promo scenario. Flight prices are estimated from current comparable routes (2027 fares aren't published yet) — directional, not bookable.</p>
+  </section>
+
+  <section aria-label="Recommendation">
+    <div class="callout recommend">
+      <div class="tag">Current Recommendation</div>
+      <h3>⚓ Royal Princess — 7 nights, roundtrip Seattle</h3>
+      <p>Cheapest for the group overall once flights are included — despite HAL's lower cruise fare, Dallas→Vancouver flights cost enough more that Royal Princess wins on total cost by roughly $1,000. Confirmed Glacier Bay day, downtown Ketchikan port, balanced for a mixed-age group (kids ages 6–14). It's the value pick, not necessarily the fun-factor or glacier-views pick — see the scorecard above if those matter more to your family.</p>
+      <div class="pill-row">
+        <span class="pill">~$16,200–19,800 total, all 10 travelers</span>
+        <span class="pill">Saturday departures</span>
+        <span class="pill">Downtown Ketchikan</span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Open decisions">
+    <div class="callout decision">
+      <div class="tag">Decisions Still Needed From the Group</div>
+      <ul class="clean">
+        <li><strong>Which ship?</strong> Royal Princess (cheapest overall) vs. HAL Koningsdam (better itinerary — two glacier days, no Victoria — for ~$1,000 more) vs. Norwegian Encore (best for teens specifically, but $5,000+ more).</li>
+        <li><strong>Which exact date?</strong> Royal Princess: Jul 17, 24, 31, or Aug 7, 2027.</li>
+        <li><strong>Cabin layout:</strong> 3 balconies — Rakesh's family of 4 needs the largest cabin; adjacent/connecting cabins preferred but not required.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-label="Ruled out options">
+    <h2 class="section-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
+      What's Been Ruled Out, and Why
+    </h2>
+    <ul class="clean">
+      <li><strong>Royal Caribbean</strong> — no 2027 Seattle sailing includes Glacier Bay.</li>
+      <li><strong>Star Princess / Norwegian Bliss</strong> — sister ships to our shortlist, but their 2027 sailings get Endicott Arm &amp; Dawes Glacier instead of Glacier Bay.</li>
+      <li><strong>Land tour / Denali add-on</strong> — not pursued; trip is cruise-only by request.</li>
+    </ul>
+  </section>
+
+  <p class="foot-note">This summary reflects planning as of the date above and will be updated as decisions are made. Figures are estimates for comparison purposes, not final bookable quotes.</p>
+
+</div>
+
+<script>
+  document.getElementById('updated-date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+</script>
+</body>
+</html>
